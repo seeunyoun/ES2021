@@ -32,6 +32,14 @@ for (let i = 0; i < winBalls.length; i++) {
   }, (i + 1) * 1000);
 } // 중복 제거 = refactoring
 
+// for (var i = 0; i < winBalls.length; i++) {
+//   (function (j) {
+//     setTimeout(() => {
+//       drawBall(winBalls[j], $result);
+//     }, (i + 1) * 1000);
+//   })(i);
+// } // 위의 let 변수 선언을 var로 바꾸고 스코프 문제를 감안하여 작성한 코드!
+
 setTimeout(() => {
   drawBall(bonus, $bonus);
 }, 7000);
