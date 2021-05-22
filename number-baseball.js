@@ -69,19 +69,31 @@ $form.addEventListener("submit", (e) => {
   let strike = 0;
   let ball = 0;
   // 예를 들어 answer: 3146, value: 1234
-  for (let i = 0; i < answer.length; i++) {
-    const index = value.indexOf(answer[i]); // answer[0]은 3 -> value.indexOf(3) -> value에서 3의 위치 -> 2 = index
-    if (index > -1) { // indexOf의 값이 false = -1
-      // 일치하는 숫자 발견
+  answer.forEach((element, i) => {
+    const index = value.indexOf(element);
+    if (index > -1) {
       if (index === i) {
-        // 자릿수도 같음
         strike += 1;
       } else {
-        // 숫자만 같음
         ball += 1;
       }
     }
-  }
+  });
+
+  // for (let i = 0; i < answer.length; i++) {
+  //   const index = value.indexOf(answer[i]); // answer[0]은 3 -> value.indexOf(3) -> value에서 3의 위치 -> 2 = index
+  //   if (index > -1) { // indexOf의 값이 false = -1
+  //     // 일치하는 숫자 발견
+  //     if (index === i) {
+  //       // 자릿수도 같음
+  //       strike += 1;
+  //     } else {
+  //       // 숫자만 같음
+  //       ball += 1;
+  //     }
+  //   }
+  // } 위의 forEach 코드와 동일!
+
   $logs.append(
     `${value}: ${strike} 스트라이크 ${ball} 볼`,
     document.createElement("br")
