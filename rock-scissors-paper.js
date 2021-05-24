@@ -32,14 +32,41 @@ const changeComputerHand = () => {
 
 let intervalId = setInterval(changeComputerHand, 50);
 
+const scoreTable = {
+  rock: 0,
+  scissors: 1,
+  paper: -1,
+};
+
 // clickButton 5번 호출, 인터벌 1번, 2번, 3번, 4번, 5번(변수 intervalId가 하나라서 제일 마지막 5번만 변수에 담김!)
 // 그다음에 버튼 클릭하면 5번만 취소
 let clickable = true; // flag 변수
+let score = 0;
 const clickButton = () => {
   if (clickable) {
     clearInterval(intervalId); // setInterval을 중단하려면 clearInterval(setInterval을 준 변수명)
     clickable = false;
     // 점수 계산 및 화면 표시
+    const myChoice =
+      event.target.textContent === "바위"
+        ? "rock"
+        : event.target.textContent === "가위"
+        ? "scissors"
+        : "paper";
+    const myScore = scoreTable[myChoice];
+    const computerScore = scoreTable[computerChoice];
+    const diff = myScore - computerScore;
+    let message;
+    if ([2, -1].includes(diff)) {
+      score += 1;
+      message = "승리";
+    } else if ([1, -2].includes(diff)) {
+      score -= 1;
+      message = "패배";
+    } else {
+      message = "무승부";
+    }
+    $score.textContent = `${message} 총: ${score}점`;
     setTimeout(() => {
       clickable = true;
       intervalId = setInterval(changeComputerHand, 50);
@@ -49,9 +76,3 @@ const clickButton = () => {
 $rock.addEventListener("click", clickButton);
 $scissors.addEventListener("click", clickButton);
 $paper.addEventListener("click", clickButton);
-
-// const fun = (x) => () => {
-//   console.log("고차함수임", x);
-// };
-
-// 태그.addEventListener("click", fun(1));
