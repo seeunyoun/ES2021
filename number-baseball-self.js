@@ -47,7 +47,10 @@ function checkInput(input) {
   return true;
 } // 검사하는 코드
 
-let out = 0; // 왜 변수 선언을 여기 하니깐 작동되지?
+let out = 0; // 왜 변수 선언을 여기 하니깐 작동되지? !강의 8-3 8:30 참조
+// 함수가 있으면, 해당 함수 실행 후 함수 블록 안에 선언됐던 변수들은 모두 지워짐!
+// 그래서 첫 번째 클릭하고 let 변수는 날아감! 함수는 한 번 실행되고 나면 그 안의 변수들을 모두 없애버린다!
+// 그렇기 때문에 함수 바깥에 전역 스코프로 변수를 선언해야 함!!
 $form.addEventListener("submit", (e) => {
   e.preventDefault();
   const value = $input.value;
