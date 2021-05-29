@@ -99,3 +99,31 @@ $battleMenu.addEventListener("submit", (event) => {
     // 도망
   }
 });
+
+class Human {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  sayName() {
+    console.log(this.name);
+  }
+  sayAge() {
+    console.log(this.age);
+  }
+}
+
+class Programmer extends Human {
+  constructor(name, age, languages) {
+    super(name, age);
+    this.languages = languages;
+  }
+  writeCode() {
+    console.log(this.languages.join() + "로 코딩해요");
+  }
+}
+
+const programmer = new Programmer("youn", 26, ["html", "css", "js"]);
+programmer.writeCode(); // html, css, js로 코딩해요
+programmer.sayAge(); // 26
+programmer.sayName(); // youn
